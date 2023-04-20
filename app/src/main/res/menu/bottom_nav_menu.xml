@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/search_local"
+        android:icon="@drawable/ic_saved_book_24dp"
+        android:title="@string/title_search_local" />
+
+    <item
+        android:id="@+id/search_online"
+        android:icon="@drawable/ic_search_24dp"
+        android:title="@string/title_search_online" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/title_settings" />
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchLocalFragment">
+
+    <fragment
+        android:id="@+id/searchLocalFragment"
+        android:name="com.sergei.apprecipes.searchlocal.SearchLocalFragment"
+        android:label="fragment_search_local"
+        tools:layout="@layout/fragment_search_local" />
+    <fragment
+        android:id="@+id/searchOnlineFragment"
+        android:name="com.sergei.apprecipes.searchonline.SearchOnlineFragment"
+        android:label="fragment_search_online"
+        tools:layout="@layout/fragment_search_online" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.sergei.apprecipes.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
