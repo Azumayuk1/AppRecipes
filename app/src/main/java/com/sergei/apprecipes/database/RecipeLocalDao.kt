@@ -1,17 +1,19 @@
 package com.sergei.apprecipes.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecipeLocalDao {
     @Query("SELECT * FROM RecipeLocal")
-    fun getAll(): List<RecipeLocal>
+    fun getAll(): Flow<List<RecipeLocal>>
 
-    @Query("SELECT * FROM RecipeLocal WHERE filter = \":filter\"")
-    fun getAllByFilter(filter: String): List<RecipeLocal>
+//    @Query("SELECT * FROM RecipeLocal WHERE filter = ':filter'")
+//    fun getAllByFilter(filter: String): Flow<List<RecipeLocal>>
 
-    @Insert
-    fun insertNew(recipeLocal: RecipeLocal)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertNew(recipeLocal: RecipeLocal)
+
+    @Delete
+    suspend fun deleteRecipe(recipeLocal: RecipeLocal)
 }

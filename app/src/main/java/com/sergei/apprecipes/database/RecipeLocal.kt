@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class RecipeLocal(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "image_path") val imagePath: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "filter") val filter: String,
