@@ -11,4 +11,9 @@
     <string name="instructions_label">Instructions</string>
     <string name="recipe_image">Recipe image</string>
     <string name="add_new_recipe">Add new recipe</string>
+    <string name="add_picture">Add picture</string>
+    <string name="recipe_name">Recipe name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="instructions">Instructions</string>
+    <string name="go_back">Go back</string>
 </resources>

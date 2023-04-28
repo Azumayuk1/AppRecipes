@@ -9,7 +9,14 @@
         android:id="@+id/searchLocalFragment"
         android:name="com.sergei.apprecipes.searchlocal.SearchLocalFragment"
         android:label="fragment_search_local"
-        tools:layout="@layout/fragment_search_local" />
+        tools:layout="@layout/fragment_search_local" >
+        <action
+            android:id="@+id/action_searchLocalFragment_to_addNewRecipeFragment"
+            app:destination="@id/addNewRecipeFragment" />
+        <action
+            android:id="@+id/action_searchLocalFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchOnlineFragment"
         android:name="com.sergei.apprecipes.searchonline.SearchOnlineFragment"
@@ -20,4 +27,12 @@
         android:name="com.sergei.apprecipes.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/addNewRecipeFragment"
+        android:name="com.sergei.apprecipes.searchlocal.AddNewRecipeFragment"
+        android:label="AddNewRecipeFragment" />
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.sergei.apprecipes.searchlocal.RecipeDetailFragment"
+        android:label="RecipeDetailFragment" />
 </navigation>
