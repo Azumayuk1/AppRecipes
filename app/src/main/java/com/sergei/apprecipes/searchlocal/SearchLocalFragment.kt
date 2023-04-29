@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sergei.apprecipes.R
+import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.databinding.FragmentSearchLocalBinding
 
 class SearchLocalFragment : Fragment() {
 
-    private val viewModel: SearchLocalViewModel by activityViewModels()
+    private val viewModel: SearchLocalViewModel by activityViewModels {
+        SearchLocalViewModelFactory(
+            (activity?.application as RecipesApplication).database.recipeLocalDao()
+        )
+    }
+
     private lateinit var binding: FragmentSearchLocalBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +28,7 @@ class SearchLocalFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSearchLocalBinding.inflate(inflater)
         return binding.root

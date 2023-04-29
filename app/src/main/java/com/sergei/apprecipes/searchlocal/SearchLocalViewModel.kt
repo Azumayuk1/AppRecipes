@@ -1,12 +1,12 @@
 package com.sergei.apprecipes.searchlocal
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.sergei.apprecipes.database.RecipeLocal
 import com.sergei.apprecipes.database.RecipeLocalDao
+import kotlinx.coroutines.launch
 
-class SearchLocalViewModelFactory(private val recipeLocalDao: RecipeLocalDao) : ViewModelProvider.Factory {
+class SearchLocalViewModelFactory(private val recipeLocalDao: RecipeLocalDao) :
+    ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SearchLocalViewModel::class.java)) {
@@ -16,7 +16,7 @@ class SearchLocalViewModelFactory(private val recipeLocalDao: RecipeLocalDao) : 
     }
 }
 
-class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao): ViewModel() {
+class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewModel() {
     private val _recipes = MutableLiveData<MutableList<String>>()
     val recipes: LiveData<MutableList<String>> = _recipes
 
@@ -26,6 +26,51 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao): ViewMode
 
     fun clearRecipesList() {
         _recipes.value?.clear()
+    }
+
+    // Adding new recipe to database
+    fun isNewRecipeCorrect(
+        name: String?,
+        instructions: String?
+    ): Boolean {
+        if (name.isNullOrBlank() || instructions.isNullOrBlank()) {
+            return false
+        }
+
+        return true
+    }
+
+    fun getNewRecipeEntry(
+        imagePath: String?,
+        name: String,
+        filter: String?,
+        ingredients: String?,
+        instructions: String
+    ): RecipeLocal {
+        return RecipeLocal(
+            imagePath = imagePath,
+            name = name,
+            filter = filter,
+            ingredients = ingredients,
+            instructions = instructions
+        )
+    }
+
+    private fun insertNewRecipe(recipe: RecipeLocal) {
+        viewModelScope.launch {
+            recipeLocalDao.insertNew(recipe)
+        }
+    }
+
+    fun addNewRecipe(
+        imagePath: String?,
+        name: String,
+        filter: String?,
+        ingredients: String?,
+        instructions: String
+    ) {
+        val newRecipeLocal = getNewRecipeEntry(imagePath, name, filter, ingredients, instructions)
+        insertNewRecipe(newRecipeLocal)
     }
 
     init {

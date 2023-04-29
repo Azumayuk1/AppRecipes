@@ -16,4 +16,7 @@
     <string name="ingredients">Ingredients</string>
     <string name="instructions">Instructions</string>
     <string name="go_back">Go back</string>
+    <string name="category_used_as_filter">Category (used as filter)</string>
+    <string name="new_recipe_added_success">New recipe successfully added!</string>
+    <string name="error_add_recipe">Error! You must at least input name and instructions for recipe!</string>
 </resources>
