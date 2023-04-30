@@ -11,6 +11,9 @@ interface RecipeLocalDao {
 //    @Query("SELECT * FROM RecipeLocal WHERE filter = ':filter'")
 //    fun getAllByFilter(filter: String): Flow<List<RecipeLocal>>
 
+    @Query("SELECT * FROM RecipeLocal WHERE id = :id")
+    fun getRecipeById(id: Int): Flow<RecipeLocal>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertNew(recipeLocal: RecipeLocal)
 

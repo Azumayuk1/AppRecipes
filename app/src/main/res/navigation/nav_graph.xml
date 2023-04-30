@@ -15,7 +15,8 @@
             app:destination="@id/addNewRecipeFragment" />
         <action
             android:id="@+id/action_searchLocalFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
+            app:destination="@id/recipeDetailFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/searchOnlineFragment"
@@ -34,5 +35,9 @@
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.sergei.apprecipes.searchlocal.RecipeDetailFragment"
-        android:label="RecipeDetailFragment" />
+        android:label="RecipeDetailFragment" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

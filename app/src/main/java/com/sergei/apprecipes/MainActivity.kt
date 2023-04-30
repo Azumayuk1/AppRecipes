@@ -2,16 +2,13 @@ package com.sergei.apprecipes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = "MainActivity"
 
     private lateinit var navController: NavController
 
@@ -24,7 +21,9 @@ class MainActivity : AppCompatActivity() {
                 .findFragmentById(R.id.fragmentContainerView)
                     as NavHostFragment
 
-        navController =  navHostFragment.navController //findNavController(R.id.fragmentContainerView)
+        navController =
+            navHostFragment.navController
+        Log.d(TAG, "NavController set")
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -44,14 +43,25 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        Log.d(TAG, "Bottom navigation created")
 
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.search_local, R.id.search_online, R.id.settings
-//            )
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        bottomNavigationView.setupWithNavController(navController)
+        //TODO: Fix hiding navigation bar on fullscreen fragments
+/*        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.search_local, R.id.search_online, R.id.settings ->
+                    bottomNavigationView.visibility = View.VISIBLE
+
+                else -> bottomNavigationView.visibility = View.GONE
+            }
+        }*/
+
+/*        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.search_local, R.id.search_online, R.id.settings
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        bottomNavigationView.setupWithNavController(navController)*/
 
     }
 }

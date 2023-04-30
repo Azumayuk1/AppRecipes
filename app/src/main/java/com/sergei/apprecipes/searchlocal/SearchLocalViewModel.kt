@@ -17,15 +17,17 @@ class SearchLocalViewModelFactory(private val recipeLocalDao: RecipeLocalDao) :
 }
 
 class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewModel() {
-    private val _recipes = MutableLiveData<MutableList<String>>()
-    val recipes: LiveData<MutableList<String>> = _recipes
+    //private val _recipes = MutableLiveData<MutableList<RecipeLocal>>()
+    val recipes: LiveData<List<RecipeLocal>> = loadRecipes()
 
-    fun loadRecipes() {}
+    fun loadRecipes(): LiveData<List<RecipeLocal>> {
+        return recipeLocalDao.getAll().asLiveData()
+    }
 
     fun loadSearchedRecipes() {}
 
-    fun clearRecipesList() {
-        _recipes.value?.clear()
+    fun retrieveRecipeById(id: Int): LiveData<RecipeLocal> {
+        return recipeLocalDao.getRecipeById(id).asLiveData()
     }
 
     // Adding new recipe to database
@@ -36,7 +38,6 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
         if (name.isNullOrBlank() || instructions.isNullOrBlank()) {
             return false
         }
-
         return true
     }
 
@@ -71,9 +72,5 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
     ) {
         val newRecipeLocal = getNewRecipeEntry(imagePath, name, filter, ingredients, instructions)
         insertNewRecipe(newRecipeLocal)
-    }
-
-    init {
-        loadRecipes()
     }
 }
