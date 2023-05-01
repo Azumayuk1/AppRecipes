@@ -20,6 +20,12 @@
             android:layout_height="match_parent"
             tools:context=".searchlocal.RecipeDetailFragment">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
@@ -28,42 +34,59 @@
                 android:scaleType="centerCrop"
                 app:recipeImage="@{recipe}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
                 tools:src="@tools:sample/avatars"
                 android:contentDescription="@string/recipe_image" />
 
             <TextView
                 android:id="@+id/recipe_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:text=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView"
                 app:recipeName="@{recipe}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
+
                 tools:text="Recipe Name" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/filter_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/recipe_name"
+                app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+                recipeFilter="@{recipe}"
+                android:text="@string/no_category"
+                />
 
             <TextView
                 android:id="@+id/ingredients_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/ingredients_label"
+                android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="@+id/recipe_name"
-                app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_chip" />
 
             <TextView
                 android:id="@+id/ingredients_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:recipeIngredients="@{recipe}"
+                android:layout_marginEnd="16dp"
+                android:maxWidth="360dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/ingredients_label"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_label"
-                android:maxWidth="360dp"
+                app:recipeIngredients="@{recipe}"
                 tools:text="Item 1\nItem 2\nItem 3\nItem 4\n" />
 
             <TextView
@@ -72,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/instructions_label"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="@+id/ingredients_text"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_text" />
 
@@ -80,10 +104,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:recipeInstruction="@{recipe}"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/instructions_label"
                 app:layout_constraintTop_toBottomOf="@+id/instructions_label"
-                android:maxWidth="360dp"
+                app:recipeInstruction="@{recipe}"
                 tools:text="I found this pancake recipe in my Grandma's recipe book. Judging from the weathered look of this recipe card, this was a family favorite." />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

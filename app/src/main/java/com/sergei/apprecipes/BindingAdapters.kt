@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.sergei.apprecipes.database.RecipeLocal
 
 @BindingAdapter("recipeImage")
@@ -21,8 +22,8 @@ fun bindRecipeName(textView: TextView, recipeLocal: RecipeLocal?) {
 }
 
 @BindingAdapter("recipeFilter")
-fun bindRecipeFilter(textView: TextView, recipeLocal: RecipeLocal?) {
-    textView.text = recipeLocal?.filter
+fun bindRecipeFilter(chip: Chip, recipeLocal: RecipeLocal?) {
+    chip.text = recipeLocal?.filter ?: chip.resources.getString(R.string.no_category)
 }
 
 @BindingAdapter("recipeIngredients")

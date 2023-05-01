@@ -1,5 +1,6 @@
 package com.sergei.apprecipes.searchlocal
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.sergei.apprecipes.database.RecipeLocal
 import com.sergei.apprecipes.database.RecipeLocalDao
@@ -17,6 +18,8 @@ class SearchLocalViewModelFactory(private val recipeLocalDao: RecipeLocalDao) :
 }
 
 class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewModel() {
+    private val TAG = "ViewModelLocalRecipes"
+
     //private val _recipes = MutableLiveData<MutableList<RecipeLocal>>()
     val recipes: LiveData<List<RecipeLocal>> = loadRecipes()
 
@@ -72,5 +75,13 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
     ) {
         val newRecipeLocal = getNewRecipeEntry(imagePath, name, filter, ingredients, instructions)
         insertNewRecipe(newRecipeLocal)
+    }
+
+    fun deleteRecipe(recipe: RecipeLocal?) {
+        if (recipe != null) {
+            viewModelScope.launch { recipeLocalDao.deleteRecipe(recipe) }
+        } else {
+            Log.e(TAG, "Recipe is null, can't be deleted")
+        }
     }
 }
