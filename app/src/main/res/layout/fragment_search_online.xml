@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.sergei.apprecipes.searchonline.SearchOnlineViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,11 +25,17 @@
             tools:layout_editor_absoluteX="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recipes_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:contentDescription="@string/search_recipes_online"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_bar"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            recipesList="@{viewModel.recipes}"
+            android:padding="4dp"
+            app:spanCount="2"
             tools:itemCount="12"
             tools:layoutManager="GridLayoutManager"
             tools:listitem="@layout/recycler_view_item"

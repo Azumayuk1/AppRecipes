@@ -22,7 +22,11 @@
         android:id="@+id/searchOnlineFragment"
         android:name="com.sergei.apprecipes.searchonline.SearchOnlineFragment"
         android:label="fragment_search_online"
-        tools:layout="@layout/fragment_search_online" />
+        tools:layout="@layout/fragment_search_online" >
+        <action
+            android:id="@+id/action_searchOnlineFragment_to_recipeOnlineDetailFragment"
+            app:destination="@id/recipeOnlineDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.sergei.apprecipes.settings.SettingsFragment"
@@ -36,6 +40,14 @@
         android:id="@+id/recipeDetailFragment"
         android:name="com.sergei.apprecipes.searchlocal.RecipeDetailFragment"
         android:label="RecipeDetailFragment" >
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeOnlineDetailFragment"
+        android:name="com.sergei.apprecipes.searchonline.RecipeOnlineDetailFragment"
+        android:label="RecipeOnlineDetailFragment" >
         <argument
             android:name="recipeId"
             app:argType="integer" />

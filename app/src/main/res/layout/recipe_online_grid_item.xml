@@ -5,7 +5,7 @@
     <data>
         <variable
             name = "recipe"
-            type = "com.sergei.apprecipes.database.RecipeLocal"/>
+            type = "com.sergei.apprecipes.network.OnlineRecipeBasic"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -26,7 +26,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:recipeImage="@{recipe}"
+                app:recipeImageUrl="@{recipe.imageSrc}"
                 android:contentDescription="@string/recipe_image" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                app:recipeName="@{recipe}"
+                app:recipeTitle="@{recipe.title}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
