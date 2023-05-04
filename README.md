@@ -5,7 +5,7 @@ App for searching recipes online and saving them locally.
 ![recipes_app_design_v1.png](recipes_app_design_v1.png)
 
 ## Setup
-To use this app, you need to provide your own Spoonacular API key.
+To use this app, you need to provide your own Spoonacular API key (https://spoonacular.com/food-api).
 In `network` package, create `ApiKeys.kt` and an object with value `SPOONACULAR_API_KEY`.
 ```
 object ApiKeys {
