@@ -2,7 +2,7 @@
 App for searching recipes online and saving them locally.
 
 ## Design made in Figma
-![App_recipes_v1.png](App_recipes_v1.png)
+![Recipes App v1.png](Recipes App v1.png)
 
 ## Setup
 To use this app, you need to provide your own Spoonacular API key.
