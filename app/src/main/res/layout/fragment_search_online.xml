@@ -33,7 +33,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_bar"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            recipesList="@{viewModel.recipes}"
             android:padding="4dp"
             app:spanCount="2"
             tools:itemCount="12"

@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import com.sergei.apprecipes.R
 import com.sergei.apprecipes.databinding.FragmentSearchOnlineBinding
 
 class SearchOnlineFragment : Fragment() {
@@ -37,7 +35,5 @@ class SearchOnlineFragment : Fragment() {
         viewModel.recipes.observe(this.viewLifecycleOwner) {
             items -> items.let { adapter.submitList(it) }
         }
-
-        //binding.recipesRecyclerView.adapter?.notifyDataSetChanged()
     }
 }

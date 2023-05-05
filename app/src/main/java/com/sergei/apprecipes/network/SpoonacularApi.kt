@@ -33,7 +33,7 @@ interface SpoonacularApi {
     @GET("recipes/{id}/information?apiKey=${API_KEY}")
     suspend fun getRecipeById(
         @Path("id") recipeId: Int
-    )
+    ) : SpoonacularRecipeResponse
 }
 
 // TODO: Check for Internet permission

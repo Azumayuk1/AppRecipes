@@ -7,6 +7,10 @@
         <variable
             name="recipeId"
             type="int"/>
+
+        <variable
+            name="recipe"
+            type="com.sergei.apprecipes.network.SpoonacularRecipeResponse" />
     </data>
 
     <ScrollView
@@ -34,6 +38,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:recipeImageUrl="@{recipe.imageUrl}"
                 tools:src="@tools:sample/avatars"
                 android:contentDescription="@string/recipe_image" />
 
@@ -44,6 +49,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:text=""
+                recipeTitle="@{recipe.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView"
@@ -57,6 +63,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@id/recipe_name"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_name"
+                recipeOnlineCategory="@{recipe}"
                 android:text="@string/no_category"
                 />
 
@@ -80,6 +87,7 @@
                 android:layout_marginEnd="16dp"
                 android:maxWidth="360dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                recipeOnlineIngredients="@{recipe}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/ingredients_label"
                 app:layout_constraintTop_toBottomOf="@+id/ingredients_label"
@@ -102,6 +110,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                recipeOnlineInstructions="@{recipe}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/instructions_label"
                 app:layout_constraintTop_toBottomOf="@+id/instructions_label"
