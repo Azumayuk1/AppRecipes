@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.snackbar.Snackbar
+import com.sergei.apprecipes.R
 import com.sergei.apprecipes.databinding.FragmentSearchOnlineBinding
 
 class SearchOnlineFragment : Fragment() {
@@ -20,20 +23,49 @@ class SearchOnlineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchOnlineBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        val adapter = RecipesOnlineGridAdapter()
+        binding.recipesRecyclerView.adapter = adapter
+
+        viewModel.recipes.observe(viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val adapter = RecipesOnlineGridAdapter()
-        binding.recipesRecyclerView.adapter = adapter
-
-        viewModel.recipes.observe(this.viewLifecycleOwner) {
-            items -> items.let { adapter.submitList(it) }
+        with(binding.searchBar) {
+            isIconified = false
         }
+
+        binding.searchBar.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    binding.searchBar.clearFocus()
+                    if (!query.isNullOrBlank()) {
+                        viewModel.searchRecipes(query)
+                        return false
+                    } else {
+                        Snackbar
+                            .make(binding.root,
+                                getString(R.string.search_is_empty),
+                                Snackbar.LENGTH_SHORT)
+                            .show()
+                        return false
+                    }
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            }
+        )
     }
 }

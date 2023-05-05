@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.sergei.apprecipes.network.OnlineRecipeBasic
 import com.sergei.apprecipes.network.SpoonacularApiService
 import com.sergei.apprecipes.network.SpoonacularRecipeResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 const val GIFS_ON_FIRST_LOAD = 10
@@ -24,7 +25,7 @@ class SearchOnlineViewModel : ViewModel() {
     fun searchRecipes(searchQuery: String) {
         clearRecipes()
 
-        viewModelScope.launch {
+        viewModelScope.launch() {
             try {
                 val response = SpoonacularApiService.retrofitApiService
                     .getSearchedRecipes(searchQuery, GIFS_ON_FIRST_LOAD)

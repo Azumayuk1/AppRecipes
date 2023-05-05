@@ -14,15 +14,17 @@
         android:layout_height="match_parent"
         tools:context=".searchonline.SearchOnlineFragment">
 
-        <com.google.android.material.search.SearchBar
+        <SearchView
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search_recipes_online"
             android:minHeight="48dp"
+            android:queryHint="@string/search_recipes_online"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck"
-            tools:layout_editor_absoluteX="16dp" />
+            tools:layout_editor_absoluteX="16dp">
+        </SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipes_recycler_view"
