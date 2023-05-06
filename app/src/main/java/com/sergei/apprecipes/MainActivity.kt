@@ -3,6 +3,7 @@ package com.sergei.apprecipes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -32,15 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "Bottom navigation created")
 
-        //TODO: Fix hiding navigation bar on fullscreen fragments
-/*        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.search_local, R.id.search_online, R.id.settings ->
+                R.id.searchLocalFragment, R.id.searchOnlineFragment, R.id.settingsFragment ->
                     bottomNavigationView.visibility = View.VISIBLE
 
                 else -> bottomNavigationView.visibility = View.GONE
             }
-        }*/
+        }
 
         bottomNavigationView.setupWithNavController(navController)
 
