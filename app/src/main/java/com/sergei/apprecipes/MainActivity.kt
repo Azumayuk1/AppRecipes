@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -26,23 +29,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "NavController set")
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.search_local -> {
-                    navController.navigate(R.id.searchLocalFragment)
-                    true
-                }
-                R.id.search_online -> {
-                    navController.navigate(R.id.searchOnlineFragment)
-                    true
-                }
-                R.id.settings -> {
-                    navController.navigate(R.id.settingsFragment)
-                    true
-                }
-                else -> false
-            }
-        }
+
         Log.d(TAG, "Bottom navigation created")
 
         //TODO: Fix hiding navigation bar on fullscreen fragments
@@ -55,13 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }*/
 
-/*        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.search_local, R.id.search_online, R.id.settings
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        bottomNavigationView.setupWithNavController(navController)*/
+        bottomNavigationView.setupWithNavController(navController)
 
     }
 }
