@@ -28,4 +28,6 @@
     <string name="picture_added_success">Picture added!</string>
     <string name="recipe_download_success">Recipe successfully downloaded!</string>
     <string name="edit_recipe">Edit recipe</string>
+    <string name="connection_error">There seems to be connection error, check your internet connection</string>
+    <string name="no_response_from_api">No response from API service</string>
 </resources>

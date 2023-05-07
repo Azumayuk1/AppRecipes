@@ -35,6 +35,30 @@ class SearchOnlineFragment : Fragment() {
         val adapter = RecipesOnlineGridAdapter()
         binding.recipesRecyclerView.adapter = adapter
 
+        viewModel.apiStatus.observe(viewLifecycleOwner) { apiStatus ->
+            when(apiStatus) {
+                ApiStatus.CONNECTION_ERROR -> {
+                    Snackbar
+                        .make(
+                            binding.root,
+                            getString(R.string.connection_error),
+                            Snackbar.LENGTH_SHORT
+                        )
+                        .show()
+                }
+                ApiStatus.NO_RESPONSE -> {
+                    Snackbar
+                        .make(
+                            binding.root,
+                            getString(R.string.no_response_from_api),
+                            Snackbar.LENGTH_SHORT
+                        )
+                        .show()
+                }
+                else -> {}
+            }
+        }
+
         viewModel.recipes.observe(viewLifecycleOwner) { items ->
             items.let {
                 adapter.submitList(it)
@@ -49,7 +73,7 @@ class SearchOnlineFragment : Fragment() {
         binding.viewModel = viewModel
 
         with(binding.searchBar) {
-            isIconifiedByDefault =false
+            isIconifiedByDefault = false
         }
 
         binding.searchBar.setOnQueryTextListener(
@@ -63,9 +87,11 @@ class SearchOnlineFragment : Fragment() {
                         return false
                     } else {
                         Snackbar
-                            .make(binding.root,
+                            .make(
+                                binding.root,
                                 getString(R.string.search_is_empty),
-                                Snackbar.LENGTH_SHORT)
+                                Snackbar.LENGTH_SHORT
+                            )
                             .show()
                         binding.recipesRecyclerView.requestFocus()
                         return false

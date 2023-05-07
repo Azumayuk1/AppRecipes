@@ -11,6 +11,7 @@ import com.google.android.material.chip.Chip
 import com.sergei.apprecipes.database.RecipeLocal
 import com.sergei.apprecipes.network.Ingredient
 import com.sergei.apprecipes.network.SpoonacularRecipeResponse
+import com.sergei.apprecipes.network.prepareSpoonacularInstructions
 
 
 // Adapters for local recipes
@@ -94,7 +95,7 @@ fun bindRecipeOnlineIngredients(textView: TextView, recipe: SpoonacularRecipeRes
 @BindingAdapter("recipeOnlineInstructions")
 fun bindRecipeOnlineInstructions(textView: TextView, recipe: SpoonacularRecipeResponse?) {
     if (!recipe?.summary.isNullOrBlank()) {
-        textView.text = recipe?.summary
+        textView.text = prepareSpoonacularInstructions(recipe?.summary)
     }
 
 }

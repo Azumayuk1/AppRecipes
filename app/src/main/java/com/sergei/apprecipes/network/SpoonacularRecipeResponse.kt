@@ -8,7 +8,7 @@ data class SpoonacularRecipeResponse(
     @Json(name = "image") val imageUrl: String,
     @Json(name = "dishTypes") val dishCategories: List<String>,
     @Json(name = "extendedIngredients") val ingredients: List<Ingredient>,
-    @Json(name = "summary") val summary: String
+    @Json(name = "instructions") val summary: String
 )
 
 data class Ingredient(

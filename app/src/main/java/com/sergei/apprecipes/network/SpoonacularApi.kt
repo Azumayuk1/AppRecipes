@@ -36,6 +36,24 @@ interface SpoonacularApi {
     ) : SpoonacularRecipeResponse
 }
 
+fun prepareSpoonacularInstructions(instructionsInput: String?): String {
+    if (instructionsInput.isNullOrBlank()) {
+        return ""
+    } else {
+        var instructions = instructionsInput
+
+        // Checking if recipe contains HTML tags
+        if (instructions.contains("</")) {
+            instructions = instructions.replace("<ol>".toRegex(), "")
+            instructions = instructions.replace("</ol>".toRegex(), "")
+            instructions = instructions.replace("<li>".toRegex(), "")
+            instructions = instructions.replace("</li>".toRegex(), "\n")
+        }
+
+        return instructions
+    }
+}
+
 // TODO: Check for Internet permission
 object SpoonacularApiService {
     val retrofitApiService : SpoonacularApi by lazy {
