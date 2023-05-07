@@ -49,15 +49,17 @@ class SearchOnlineFragment : Fragment() {
         binding.viewModel = viewModel
 
         with(binding.searchBar) {
-            isIconified = false
+            isIconifiedByDefault =false
         }
 
         binding.searchBar.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     binding.searchBar.clearFocus()
+
                     if (!query.isNullOrBlank()) {
                         viewModel.searchRecipes(query)
+                        binding.recipesRecyclerView.requestFocus()
                         return false
                     } else {
                         Snackbar
@@ -65,6 +67,7 @@ class SearchOnlineFragment : Fragment() {
                                 getString(R.string.search_is_empty),
                                 Snackbar.LENGTH_SHORT)
                             .show()
+                        binding.recipesRecyclerView.requestFocus()
                         return false
                     }
                 }

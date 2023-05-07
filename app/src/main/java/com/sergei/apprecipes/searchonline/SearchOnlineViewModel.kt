@@ -7,6 +7,7 @@ import com.sergei.apprecipes.database.RecipeLocalDao
 import com.sergei.apprecipes.network.OnlineRecipeBasic
 import com.sergei.apprecipes.network.SpoonacularApiService
 import com.sergei.apprecipes.network.SpoonacularRecipeResponse
+import com.sergei.apprecipes.prepareRecipeOnlineIngredients
 import kotlinx.coroutines.launch
 
 const val GIFS_ON_FIRST_LOAD = 10
@@ -70,9 +71,8 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
                     imagePath = _currentRecipe.value?.imageUrl,
                     name = _currentRecipe.value?.title ?: "No title",
                     filter = _currentRecipe.value?.dishCategories?.get(0) ?: "null",
-                    ingredients = _currentRecipe.value?.ingredients.toString(),
+                    ingredients = prepareRecipeOnlineIngredients(_currentRecipe.value?.ingredients),
                     instructions = _currentRecipe.value?.summary
-
                 )
             )
         }

@@ -27,4 +27,5 @@
     <string name="search_is_empty">Search query is empty!</string>
     <string name="picture_added_success">Picture added!</string>
     <string name="recipe_download_success">Recipe successfully downloaded!</string>
+    <string name="edit_recipe">Edit recipe</string>
 </resources>

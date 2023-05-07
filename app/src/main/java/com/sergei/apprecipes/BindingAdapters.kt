@@ -9,6 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.chip.Chip
 import com.sergei.apprecipes.database.RecipeLocal
+import com.sergei.apprecipes.network.Ingredient
 import com.sergei.apprecipes.network.SpoonacularRecipeResponse
 
 
@@ -27,14 +28,10 @@ fun bindRecipeImage(imgView: ImageView, recipeLocal: RecipeLocal?) {
     }
 }
 
-
-
 @BindingAdapter("recipeName")
 fun bindRecipeName(textView: TextView, recipeLocal: RecipeLocal?) {
     textView.text = recipeLocal?.name
 }
-
-
 
 @BindingAdapter("recipeFilter")
 fun bindRecipeFilter(chip: Chip, recipeLocal: RecipeLocal?) {
@@ -77,21 +74,26 @@ fun bindRecipeOnlineCategory(chip: Chip, recipe: SpoonacularRecipeResponse?) {
     }
 }
 
-@BindingAdapter("recipeOnlineIngredients")
-fun bindRecipeOnlineIngredients(textView: TextView, recipe: SpoonacularRecipeResponse?) {
+fun prepareRecipeOnlineIngredients(ingredients: List<Ingredient>?): String {
     val ingredientsText = java.lang.StringBuilder("")
-    if (recipe != null) {
-        for (i in recipe.ingredients) {
+    if (ingredients != null) {
+        for (i in ingredients) {
             ingredientsText.append(i.info + "\n")
         }
+    }
+    return ingredientsText.toString()
+}
 
-        textView.text = ingredientsText.toString()
+@BindingAdapter("recipeOnlineIngredients")
+fun bindRecipeOnlineIngredients(textView: TextView, recipe: SpoonacularRecipeResponse?) {
+    if (recipe != null) {
+        textView.text = prepareRecipeOnlineIngredients(recipe.ingredients)
     }
 }
 
 @BindingAdapter("recipeOnlineInstructions")
 fun bindRecipeOnlineInstructions(textView: TextView, recipe: SpoonacularRecipeResponse?) {
-    if(!recipe?.summary.isNullOrBlank()) {
+    if (!recipe?.summary.isNullOrBlank()) {
         textView.text = recipe?.summary
     }
 
