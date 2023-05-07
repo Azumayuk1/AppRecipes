@@ -1,11 +1,14 @@
 package com.sergei.apprecipes.searchlocal
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
@@ -23,6 +26,8 @@ class AddNewRecipeFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentAddNewRecipeBinding
+
+    private var chosenPictureUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +49,33 @@ class AddNewRecipeFragment : Fragment() {
         return binding.root
     }
 
+    // Selecting image from gallery
+    private val selectImageFromGalleryResult =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
+            if (uri != null) {
+                requireActivity().contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            chosenPictureUri = uri
+
+            Snackbar
+                .make(
+                    binding.root,
+                    getString(R.string.picture_added_success),
+                    Snackbar.LENGTH_SHORT
+                )
+                .show()
+
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonAddPicture.setOnClickListener {
+            selectImageFromGalleryResult.launch(arrayOf("image/*"))
+        }
 
         // Add new recipe
         binding.addNewRecipeButton.setOnClickListener {
@@ -56,7 +86,7 @@ class AddNewRecipeFragment : Fragment() {
                 )
             ) {
                 viewModel.addNewRecipe(
-                    null, // TODO: Add recipe image
+                    chosenPictureUri.toString(),
                     binding.inputRecipeName.editText?.text.toString(),
                     binding.inputFilter.editText?.text.toString(),
                     binding.inputIngredients.editText?.text.toString(),
@@ -65,17 +95,21 @@ class AddNewRecipeFragment : Fragment() {
                 Log.d(TAG, "New recipe added")
 
                 Snackbar
-                    .make(binding.root,
+                    .make(
+                        binding.root,
                         getString(R.string.new_recipe_added_success),
-                        Snackbar.LENGTH_SHORT)
+                        Snackbar.LENGTH_SHORT
+                    )
                     .show()
 
                 findNavController().navigateUp()
             } else {
                 Snackbar
-                    .make(binding.root,
+                    .make(
+                        binding.root,
                         getString(R.string.error_add_recipe),
-                        Snackbar.LENGTH_SHORT)
+                        Snackbar.LENGTH_SHORT
+                    )
                     .show()
             }
 

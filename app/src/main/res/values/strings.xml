@@ -25,4 +25,6 @@
     <string name="recipe_deleted_success">Recipe deleted!</string>
     <string name="save_recipe_to_device">Save recipe to device</string>
     <string name="search_is_empty">Search query is empty!</string>
+    <string name="picture_added_success">Picture added!</string>
+    <string name="recipe_download_success">Recipe successfully downloaded!</string>
 </resources>

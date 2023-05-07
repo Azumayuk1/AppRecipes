@@ -9,13 +9,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.sergei.apprecipes.R
+import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.databinding.FragmentRecipeOnlineDetailBinding
 
 class RecipeOnlineDetailFragment : Fragment() {
     private val TAG = "RecipeOnlineDetailFragment"
 
-    private val viewModel: SearchOnlineViewModel by activityViewModels()
+    private val viewModel: SearchOnlineViewModel by activityViewModels {
+        SearchOnlineViewModelFactory(
+            (activity?.application as RecipesApplication).database.recipeLocalDao()
+        )
+    }
+
     private val navigationArgs: RecipeOnlineDetailFragmentArgs by navArgs()
     private lateinit var binding: FragmentRecipeOnlineDetailBinding
 
@@ -39,6 +46,7 @@ class RecipeOnlineDetailFragment : Fragment() {
             setSubtitle(R.string.recipe)
         }
 
+
         viewModel.currentRecipe.observe(this.viewLifecycleOwner) { selectedItem ->
             Log.d(TAG, "Recipe retrieved, name:${selectedItem?.title ?: "Null"}")
             binding.recipe = selectedItem
@@ -48,6 +56,28 @@ class RecipeOnlineDetailFragment : Fragment() {
         //binding.executePendingBindings()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.save_recipe_to_device -> {
+                    viewModel.downloadRecipe()
+                    Log.d(TAG, "Called recipe saving to device")
+
+                    Snackbar
+                        .make(binding.root,
+                            getString(R.string.recipe_download_success),
+                            Snackbar.LENGTH_SHORT)
+                        .show()
+
+                    findNavController().navigateUp()
+                }
+            }
+            true
+        }
     }
 
 

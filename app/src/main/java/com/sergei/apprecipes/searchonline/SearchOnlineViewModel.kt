@@ -1,19 +1,28 @@
 package com.sergei.apprecipes.searchonline
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.sergei.apprecipes.database.RecipeLocal
+import com.sergei.apprecipes.database.RecipeLocalDao
 import com.sergei.apprecipes.network.OnlineRecipeBasic
 import com.sergei.apprecipes.network.SpoonacularApiService
 import com.sergei.apprecipes.network.SpoonacularRecipeResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 const val GIFS_ON_FIRST_LOAD = 10
 
-class SearchOnlineViewModel : ViewModel() {
+class SearchOnlineViewModelFactory(private val recipeLocalDao: RecipeLocalDao) :
+    ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SearchOnlineViewModel::class.java)) {
+            return SearchOnlineViewModel(recipeLocalDao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+
+class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewModel() {
     private val TAG = "SearchOnline ViewModel"
 
     private val _recipes = MutableLiveData(mutableListOf<OnlineRecipeBasic>())
@@ -52,6 +61,22 @@ class SearchOnlineViewModel : ViewModel() {
                 Log.e(TAG, "${e.message}")
             }
         }
+    }
+
+    fun downloadRecipe() {
+        viewModelScope.launch {
+            recipeLocalDao.insertNew(
+                RecipeLocal(
+                    imagePath = _currentRecipe.value?.imageUrl,
+                    name = _currentRecipe.value?.title ?: "No title",
+                    filter = _currentRecipe.value?.dishCategories?.get(0) ?: "null",
+                    ingredients = _currentRecipe.value?.ingredients.toString(),
+                    instructions = _currentRecipe.value?.summary
+
+                )
+            )
+        }
+
     }
 
     init {

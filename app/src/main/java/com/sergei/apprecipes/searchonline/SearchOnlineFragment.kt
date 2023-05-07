@@ -9,11 +9,18 @@ import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import com.sergei.apprecipes.R
+import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.databinding.FragmentSearchOnlineBinding
 
 class SearchOnlineFragment : Fragment() {
     private lateinit var binding: FragmentSearchOnlineBinding
-    private val viewModel: SearchOnlineViewModel by activityViewModels()
+
+    private val viewModel: SearchOnlineViewModel by activityViewModels {
+        SearchOnlineViewModelFactory(
+            (activity?.application as RecipesApplication).database.recipeLocalDao()
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

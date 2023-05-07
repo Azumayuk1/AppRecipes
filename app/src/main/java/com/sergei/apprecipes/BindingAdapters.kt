@@ -2,6 +2,7 @@ package com.sergei.apprecipes
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.FitCenter
@@ -17,7 +18,12 @@ fun bindRecipeImage(imgView: ImageView, recipeLocal: RecipeLocal?) {
     if (recipeLocal?.imagePath.isNullOrBlank()) {
         imgView.setImageResource(R.drawable.placeholder_food)
     } else {
-        // TODO: Logic for loading image from database
+        Glide.with(imgView)
+            .load(recipeLocal?.imagePath.toString().toUri())
+            .placeholder(R.drawable.placeholder_food)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .transform(FitCenter())
+            .into(imgView)
     }
 }
 
