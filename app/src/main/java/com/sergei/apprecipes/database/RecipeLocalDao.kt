@@ -8,8 +8,8 @@ interface RecipeLocalDao {
     @Query("SELECT * FROM RecipeLocal")
     fun getAll(): Flow<List<RecipeLocal>>
 
-//    @Query("SELECT * FROM RecipeLocal WHERE filter = ':filter'")
-//    fun getAllByFilter(filter: String): Flow<List<RecipeLocal>>
+    @Query("SELECT * FROM RecipeLocal WHERE filter = :filter OR name = :name")
+    fun getAllByNameAndFilter(filter: String, name: String): Flow<List<RecipeLocal>>
 
     @Query("SELECT * FROM RecipeLocal WHERE id = :id")
     fun getRecipeById(id: Int): Flow<RecipeLocal>

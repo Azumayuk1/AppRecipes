@@ -72,6 +72,7 @@ class SearchOnlineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
+
         with(binding.searchBar) {
             isIconifiedByDefault = false
         }

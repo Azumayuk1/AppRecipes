@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".settings.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+    <com.google.android.material.search.SearchView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_food_icon" />
+        android:id="@+id/settings_searchview">
+
+    </com.google.android.material.search.SearchView>
+
 
 </FrameLayout>

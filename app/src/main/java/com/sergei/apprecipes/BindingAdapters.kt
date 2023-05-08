@@ -69,9 +69,12 @@ fun bindRecipeTitle(textView: TextView, title: String?) {
 @BindingAdapter("recipeOnlineCategory")
 fun bindRecipeOnlineCategory(chip: Chip, recipe: SpoonacularRecipeResponse?) {
     if (recipe != null) {
-        if (recipe.dishCategories[0].isNotBlank()) {
-            chip.text = recipe.dishCategories[0]
+        if (!recipe.dishCategories.isEmpty()) {
+            if (recipe.dishCategories[0].isNotBlank()) {
+                chip.text = recipe.dishCategories[0]
+            }
         }
+
     }
 }
 
