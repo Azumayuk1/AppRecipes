@@ -43,6 +43,9 @@
         <argument
             android:name="recipeId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_editRecipeFragment"
+            app:destination="@id/editRecipeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeOnlineDetailFragment"
@@ -50,6 +53,14 @@
         android:label="RecipeOnlineDetailFragment" >
         <argument
             android:name="recipeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRecipeFragment"
+        android:name="com.sergei.apprecipes.searchlocal.EditRecipeFragment"
+        android:label="fragment_edit_recipe"
+        tools:layout="@layout/fragment_edit_recipe" >
+        <argument android:name="recipeId"
             app:argType="integer" />
     </fragment>
 </navigation>

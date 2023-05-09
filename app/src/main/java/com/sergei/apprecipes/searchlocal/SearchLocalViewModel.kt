@@ -60,6 +60,24 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
         )
     }
 
+    fun getUpdatedRecipeEntry(
+        id: Int,
+        imagePath: String?,
+        name: String,
+        filter: String?,
+        ingredients: String?,
+        instructions: String
+    ): RecipeLocal {
+        return RecipeLocal(
+            id = id,
+            imagePath = imagePath,
+            name = name,
+            filter = filter,
+            ingredients = ingredients,
+            instructions = instructions
+        )
+    }
+
     private fun insertNewRecipe(recipe: RecipeLocal) {
         viewModelScope.launch {
             recipeLocalDao.insertNew(recipe)
@@ -75,6 +93,25 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
     ) {
         val newRecipeLocal = getNewRecipeEntry(imagePath, name, filter, ingredients, instructions)
         insertNewRecipe(newRecipeLocal)
+    }
+
+    fun editRecipe(
+        id: Int,
+        imagePath: String?,
+        name: String,
+        filter: String?,
+        ingredients: String?,
+        instructions: String
+    ) {
+        val updatedRecipe =
+            getUpdatedRecipeEntry(id, imagePath, name, filter, ingredients, instructions)
+        updateRecipe(updatedRecipe)
+    }
+
+    fun updateRecipe(recipe: RecipeLocal) {
+        viewModelScope.launch {
+            recipeLocalDao.updateRecipe(recipe)
+        }
     }
 
     fun deleteRecipe(recipe: RecipeLocal?) {

@@ -25,6 +25,7 @@ class RecipeDetailFragment : Fragment() {
             (activity?.application as RecipesApplication).database.recipeLocalDao()
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,21 +61,28 @@ class RecipeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.delete_recipe -> {
                     viewModel.deleteRecipe(binding.recipe)
                     Log.d(TAG, "Called recipe deletion")
 
                     Snackbar
-                        .make(binding.root,
+                        .make(
+                            binding.root,
                             getString(R.string.recipe_deleted_success),
-                            Snackbar.LENGTH_SHORT)
+                            Snackbar.LENGTH_SHORT
+                        )
                         .show()
 
                     findNavController().navigateUp()
                 }
                 R.id.edit_recipe -> {
-                    // TODO: Edit recipe
+                    findNavController().navigate(
+                        RecipeDetailFragmentDirections
+                            .actionRecipeDetailFragmentToEditRecipeFragment(
+                                navigationArgs.recipeId
+                            )
+                    )
                 }
             }
             true

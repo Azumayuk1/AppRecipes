@@ -17,6 +17,9 @@ interface RecipeLocalDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertNew(recipeLocal: RecipeLocal)
 
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun updateRecipe(recipe: RecipeLocal)
+
     @Delete
     suspend fun deleteRecipe(recipeLocal: RecipeLocal)
 }
