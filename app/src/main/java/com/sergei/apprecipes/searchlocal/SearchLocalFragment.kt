@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.sergei.apprecipes.R
 import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.databinding.FragmentSearchLocalBinding
@@ -23,10 +25,6 @@ class SearchLocalFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentSearchLocalBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +56,41 @@ class SearchLocalFragment : Fragment() {
         binding.addNewRecipeButton.setOnClickListener {
             findNavController().navigate(R.id.action_searchLocalFragment_to_addNewRecipeFragment)
         }
+
+        // Setting up the search bar
+
+        binding.searchBar.setOnCloseListener {
+            viewModel.loadAllRecipes()
+            true
+        }
+
+        binding.searchBar.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    binding.searchBar.clearFocus()
+
+                    if (!query.isNullOrBlank()) {
+                        viewModel.loadSearchedRecipes(query)
+                        binding.recipesView.requestFocus()
+                        return false
+                    } else {
+                        Snackbar
+                            .make(
+                                binding.root,
+                                getString(R.string.search_is_empty),
+                                Snackbar.LENGTH_SHORT
+                            )
+                            .show()
+                        binding.recipesView.requestFocus()
+                        return false
+                    }
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            }
+        )
     }
 
 }
