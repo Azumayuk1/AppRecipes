@@ -10,7 +10,7 @@ import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.database.RecipeLocalDao
 import kotlinx.coroutines.coroutineScope
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragmentPreferences : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -18,24 +18,18 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
         // Getting users list
-        /*val usersSet = sharedPrefs.getStringSet("users_dropdown", null)
-
+        val usersSet = sharedPrefs.getStringSet("users", null)
         // Checking if users list is empty and adding default user
-        if (usersSet == null || usersSet.isEmpty()) {
-            sharedPrefs.edit().putStringSet("users_dropdown", setOf("Default User")).apply()
-        }*/
+        if (usersSet?.isEmpty() == true) {
+            sharedPrefs.edit().putStringSet("users", setOf("Default User")).apply()
+        }
 
         // Setting up user choice
-        /*val usersDropDown = findPreference<DropDownPreference>("users_dropdown")
-        usersDropDown?.entries = sharedPrefs
-            .getStringSet("users_dropdown", null)?.toTypedArray() ?: arrayOf("Error")*/
-
-        /*val usersDropDown = DropDownPreference(requireContext()).apply {
+        val usersDropDown = DropDownPreference(requireContext()).apply {
             key = "users_dropdown"
             title = "Current user"
             entries = sharedPrefs
                 .getStringSet("users", null)?.toTypedArray() ?: arrayOf("Error")
-        }*/
-
+        }
     }
 }

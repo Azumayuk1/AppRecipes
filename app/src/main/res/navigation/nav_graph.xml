@@ -30,8 +30,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.sergei.apprecipes.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="fragment_settings" />
     <fragment
         android:id="@+id/addNewRecipeFragment"
         android:name="com.sergei.apprecipes.searchlocal.AddNewRecipeFragment"

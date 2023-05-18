@@ -2,6 +2,7 @@ package com.sergei.apprecipes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import androidx.navigation.NavController
@@ -41,8 +42,9 @@ class MainActivity : AppCompatActivity() {
                 else -> bottomNavigationView.visibility = View.GONE
             }
         }
-
         bottomNavigationView.setupWithNavController(navController)
+
+
 
     }
 }

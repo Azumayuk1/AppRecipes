@@ -94,6 +94,8 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
 
     init {
         Log.d(TAG, "ViewModel created")
-        searchRecipes("Oatmeal")
+
+        // Debug
+        //searchRecipes("Oatmeal")
     }
 }
