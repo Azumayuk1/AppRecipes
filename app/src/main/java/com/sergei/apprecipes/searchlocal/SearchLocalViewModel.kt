@@ -22,6 +22,7 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
 
     var recipes: LiveData<List<RecipeLocal>> = getAllRecipes()
 
+
     private fun getAllRecipes(): LiveData<List<RecipeLocal>> {
         return recipeLocalDao.getAll().asLiveData()
     }

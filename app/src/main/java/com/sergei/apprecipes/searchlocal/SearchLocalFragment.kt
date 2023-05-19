@@ -45,12 +45,15 @@ class SearchLocalFragment : Fragment() {
                 SearchLocalFragmentDirections.actionSearchLocalFragmentToRecipeDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
-        binding.recipesView.adapter =  adapter
+        binding.recipesView.adapter = adapter
         Log.d(TAG, "Adapter for Recycler set")
 
         // Submitting list for RecyclerView
-        viewModel.recipes.observe(this.viewLifecycleOwner) {
-            items -> items.let { adapter.submitList(it) }
+        viewModel.recipes.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+            Log.d(SearchLocalFragment::class.simpleName, "Local recipes: " + items?.size)
         }
 
         binding.addNewRecipeButton.setOnClickListener {
@@ -58,14 +61,9 @@ class SearchLocalFragment : Fragment() {
         }
 
         // Setting up the search bar
-
-        binding.searchBar.setOnCloseListener {
-            viewModel.loadAllRecipes()
-            true
-        }
-
         binding.searchBar.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
+                val adapter = binding.recipesView.adapter
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     binding.searchBar.clearFocus()
 
@@ -74,19 +72,19 @@ class SearchLocalFragment : Fragment() {
                         binding.recipesView.requestFocus()
                         return false
                     } else {
-                        Snackbar
-                            .make(
-                                binding.root,
-                                getString(R.string.search_is_empty),
-                                Snackbar.LENGTH_SHORT
-                            )
-                            .show()
+                        viewModel.loadAllRecipes()
                         binding.recipesView.requestFocus()
                         return false
                     }
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrBlank()) {
+                        viewModel.loadAllRecipes()
+                        return false
+                    } else {
+                        viewModel.loadSearchedRecipes(newText)
+                    }
                     return false
                 }
             }

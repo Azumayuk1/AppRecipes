@@ -48,7 +48,8 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
                 val response = SpoonacularApiService.retrofitApiService
                     .getSearchedRecipes(searchQuery, GIFS_ON_FIRST_LOAD)
 
-                _recipes.value?.addAll(response.results)
+//                _recipes.value?.addAll(response.results)
+                _recipes.postValue(response.results.toMutableList())
 
                 Log.d(TAG, "API response: loaded, size: ${_recipes.value?.size ?: 0}")
                 _apiStatus.value = ApiStatus.OK
