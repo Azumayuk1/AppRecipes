@@ -37,7 +37,7 @@ class SearchOnlineFragment : Fragment() {
         binding.recipesRecyclerView.adapter = adapter
 
         viewModel.apiStatus.observe(viewLifecycleOwner) { apiStatus ->
-            when(apiStatus) {
+            when (apiStatus) {
                 ApiStatus.CONNECTION_ERROR -> {
                     Snackbar
                         .make(

@@ -46,7 +46,6 @@ class RecipeOnlineDetailFragment : Fragment() {
             setSubtitle(R.string.recipe)
         }
 
-
         viewModel.currentRecipe.observe(this.viewLifecycleOwner) { selectedItem ->
             Log.d(TAG, "Recipe retrieved, name:${selectedItem?.title ?: "Null"}")
             binding.recipe = selectedItem
@@ -61,15 +60,17 @@ class RecipeOnlineDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.save_recipe_to_device -> {
                     viewModel.downloadRecipe()
                     Log.d(TAG, "Called recipe saving to device")
 
                     Snackbar
-                        .make(binding.root,
+                        .make(
+                            binding.root,
                             getString(R.string.recipe_download_success),
-                            Snackbar.LENGTH_SHORT)
+                            Snackbar.LENGTH_SHORT
+                        )
                         .show()
 
                     findNavController().navigateUp()

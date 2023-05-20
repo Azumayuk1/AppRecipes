@@ -2,14 +2,9 @@ package com.sergei.apprecipes
 
 import android.content.Intent
 import android.content.IntentSender
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -66,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                         null, 0, 0, 0, null)
                 } catch (e: IntentSender.SendIntentException) {
                     Log.e(TAG, "Couldn't start One Tap UI: ${e.localizedMessage}")
+                    this.finish()
                 }
             }
             .addOnFailureListener(this) { e ->
@@ -95,15 +91,18 @@ class LoginActivity : AppCompatActivity() {
                                 .makeText(
                                     this, "Username: ${username}", Toast.LENGTH_SHORT
                                 ).show()*/
+                            this.finish()
                         }
                         password != null -> {
                             // Got a saved username and password. Use them to authenticate
                             // with your backend.
                             Log.d(TAG, "Got password.")
+                            this.finish()
                         }
                         else -> {
                             // Shouldn't happen.
                             Log.d(TAG, "No ID token or password!")
+                            this.finish()
                         }
                     }
                 } catch (e: ApiException) {
@@ -112,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
                             Log.d(TAG, "One-tap dialog was closed.")
                             // Don't re-prompt the user.
                             showOneTapUI = false
+                            this.finish()
                         }
                         CommonStatusCodes.NETWORK_ERROR -> {
                             Log.d(TAG, "One-tap encountered a network error.")
@@ -120,6 +120,7 @@ class LoginActivity : AppCompatActivity() {
                         else -> {
                             Log.d(TAG, "Couldn't get credential from result." +
                                     " (${e.localizedMessage})")
+                            this.finish()
                         }
                     }
                 }

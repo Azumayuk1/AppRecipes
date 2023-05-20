@@ -49,4 +49,6 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="user_settings">User settings</string>
     <string name="search_settings">Search settings</string>
+    <string name="share_recipe">Share recipe</string>
+    <string name="sharing_my_recipe">Sharing my recipe!</string>
 </resources>

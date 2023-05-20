@@ -23,10 +23,4 @@ interface RecipeLocalDao {
     @Delete
     suspend fun deleteRecipe(recipeLocal: RecipeLocal)
 
-    // Users
-//    @Query("SELECT * FROM User")
-//    suspend fun getAllUsers(): List<User>
-//
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun addUser(user: User)
 }

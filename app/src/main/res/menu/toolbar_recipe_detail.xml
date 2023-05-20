@@ -5,6 +5,9 @@
         android:title="@string/delete_recipe"
         android:id="@+id/delete_recipe"/>
     <item
+        android:title="@string/share_recipe"
+        android:id="@+id/share_recipe"/>
+    <item
         android:title="@string/edit_recipe"
         android:id="@+id/edit_recipe"
         android:icon="@drawable/ic_edit_24"
