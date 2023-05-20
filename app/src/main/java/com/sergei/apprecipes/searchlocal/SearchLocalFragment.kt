@@ -1,5 +1,6 @@
 package com.sergei.apprecipes.searchlocal
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.sergei.apprecipes.LoginActivity
 import com.sergei.apprecipes.R
 import com.sergei.apprecipes.RecipesApplication
 import com.sergei.apprecipes.databinding.FragmentSearchLocalBinding

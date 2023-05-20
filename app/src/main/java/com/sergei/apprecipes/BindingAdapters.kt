@@ -52,7 +52,6 @@ fun bindRecipeInstructions(textView: TextView, recipeLocal: RecipeLocal?) {
 // Adapters for recipes loaded from Spoonacular API
 @BindingAdapter("recipeImageUrl")
 fun bindRecipeImageUrl(imgView: ImageView, imageUrl: String?) {
-    // TODO: Add error placeholder
     Glide.with(imgView)
         .load(imageUrl)
         .placeholder(R.drawable.placeholder_food)

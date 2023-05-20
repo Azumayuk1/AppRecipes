@@ -3,13 +3,9 @@
     <PreferenceCategory app:title="@string/user_settings">
 
         <DropDownPreference
-            app:key="users"
-            app:title="Current user"
-            app:summary="Switch between different users" />
-        <EditTextPreference
-            app:key="add_new_user"
-            app:title="Add new user"
-            app:summary="Users will see only their own recipes"/>
+            app:key="user_google"
+            app:title="Login with Google"
+            app:summary="You can sign in using your Google account" />
 
     </PreferenceCategory>
 

@@ -43,8 +43,6 @@ class RecipesGridAdapter(private val onItemClicked: (RecipeLocal) -> Unit) :
         override fun areItemsTheSame(oldItem: RecipeLocal, newItem: RecipeLocal): Boolean {
             return oldItem.id == newItem.id
         }
-
-        // TODO: Add more checks of contents being same
         override fun areContentsTheSame(oldItem: RecipeLocal, newItem: RecipeLocal): Boolean {
             return oldItem.name == newItem.name
         }

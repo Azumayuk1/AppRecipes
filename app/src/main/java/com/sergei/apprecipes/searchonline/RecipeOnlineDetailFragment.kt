@@ -53,7 +53,6 @@ class RecipeOnlineDetailFragment : Fragment() {
         }
 
         Log.d(TAG, "Recipe binded, title: ${binding.recipe?.title}")
-        //binding.executePendingBindings()
 
         return binding.root
     }

@@ -53,8 +53,6 @@ fun prepareSpoonacularInstructions(instructionsInput: String?): String {
         return instructions
     }
 }
-
-// TODO: Check for Internet permission
 object SpoonacularApiService {
     val retrofitApiService : SpoonacularApi by lazy {
         retrofit.create(SpoonacularApi::class.java)
