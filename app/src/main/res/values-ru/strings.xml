@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppRecipes</string>
+    <string name="title_search_local">Сохраненные</string>
+    <string name="title_search_online">Искать в сети</string>
+    <string name="title_settings">Настройки</string>
+    <string name="search_your_saved_recipes">Поиск сохраненных рецептов</string>
+    <string name="search_recipes_online">Поиск рецептов в сети</string>
+    <string name="ingredients_label">Ингредиенты:</string>
+    <string name="instructions_label">Как приготовить:</string>
+    <string name="recipe_image">Картинка рецепта</string>
+    <string name="add_new_recipe">Добавить рецепт</string>
+    <string name="add_picture">Добавить картинку</string>
+    <string name="recipe_name">Название рецепта</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="instructions">Инструкции</string>
+    <string name="go_back">Назад</string>
+    <string name="category_used_as_filter">Категория</string>
+    <string name="new_recipe_added_success">Новый рецепт добавлен!</string>
+    <string name="error_add_recipe">Ошибка! У рецепта должны быть название и инструкция!</string>
+    <string name="no_category">Без категории</string>
+    <string name="delete_recipe">Удалить рецепт</string>
+    <string name="recipe">Рецепт</string>
+    <string name="recipe_deleted_success">Рецепт удалён!</string>
+    <string name="save_recipe_to_device">Сохранить на устройство</string>
+    <string name="search_is_empty">Поиск пуст!</string>
+    <string name="picture_added_success">Картинка добавлена!</string>
+    <string name="recipe_download_success">Рецепт сохранён!</string>
+    <string name="edit_recipe">Изменить</string>
+    <string name="connection_error">Ошибка соединения, проверьте подключение к сети</string>
+    <string name="no_response_from_api">Нет ответа от внешнего сервиса</string>
+    <string name="add_new_picture">Добавить новую картинку</string>
+    <string name="save">Сохранить</string>
+    <string name="recipe_edit_success">Рецепт изменён!</string>
+    <string name="user_settings">Настройки пользователя</string>
+    <string name="search_settings">Настройки поиска</string>
+    <string name="share_recipe">Поделиться</string>
+    <string name="sharing_my_recipe">Делюсь рецептом!</string>
+</resources>
