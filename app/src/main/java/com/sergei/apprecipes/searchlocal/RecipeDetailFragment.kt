@@ -27,11 +27,6 @@ class RecipeDetailFragment : Fragment() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,11 +37,13 @@ class RecipeDetailFragment : Fragment() {
         val id = navigationArgs.recipeId
         Log.d(TAG, "Recipe id: ${id}")
 
+        // Observing recipe
         viewModel.retrieveRecipeById(id).observe(this.viewLifecycleOwner) { selectedItem ->
             Log.d(TAG, "Recipe retrieved, name:${selectedItem?.name ?: "Null"}")
             binding.recipe = selectedItem
         }
 
+        // Toolbar
         binding.toolbar.apply {
             inflateMenu(R.menu.toolbar_recipe_detail)
             setNavigationIcon(R.drawable.ic_arrow_back_24)
@@ -54,13 +51,13 @@ class RecipeDetailFragment : Fragment() {
             setSubtitle(R.string.recipe)
         }
 
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Setting up Toolbar options
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.delete_recipe -> {

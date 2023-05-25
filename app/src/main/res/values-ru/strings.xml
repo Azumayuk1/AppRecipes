@@ -36,4 +36,10 @@
     <string name="search_settings">Настройки поиска</string>
     <string name="share_recipe">Поделиться</string>
     <string name="sharing_my_recipe">Делюсь рецептом!</string>
+    <string name="login_with_google">Войти с Google</string>
+    <string name="you_can_sign_in_with_google">Вы можете войти, используя аккаунт Google</string>
+    <string name="vegetarian">Вегетарианские рецепты</string>
+    <string name="only_vegetarian_recipes_appear">В поиске будут показываться только вегетарианские рецепты</string>
+    <string name="cheap_recipes">Дешёвые рецепты</string>
+    <string name="only_cheap_recipes">В поиске будут показываться только дешевые рецепты</string>
 </resources>

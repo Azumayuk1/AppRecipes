@@ -4,20 +4,20 @@
 
         <DropDownPreference
             app:key="user_google"
-            app:title="Login with Google"
-            app:summary="You can sign in using your Google account" />
+            app:title="@string/login_with_google"
+            app:summary="@string/you_can_sign_in_with_google" />
 
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/search_settings">
         <SwitchPreferenceCompat
             app:key="is_vegetarian"
-            app:title="Vegetarian"
-            app:summary="Only vegetarian recipes will appear in the search"/>
+            app:title="@string/vegetarian"
+            app:summary="@string/only_vegetarian_recipes_appear"/>
         <SwitchPreferenceCompat
             app:key="is_cheap"
-            app:title="Cheap recipes"
-            app:summary="Only inexpensive recipes will be shown"/>
+            app:title="@string/cheap_recipes"
+            app:summary="@string/only_cheap_recipes"/>
 
     </PreferenceCategory>
 

@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+    Recipe that is stored in local database.
+ */
 @Entity
 data class RecipeLocal(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,

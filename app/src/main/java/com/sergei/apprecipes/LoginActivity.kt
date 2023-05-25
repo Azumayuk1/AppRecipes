@@ -15,6 +15,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sergei.apprecipes.network.ApiKeys
 
+// TODO: Fix auth, move from a separate activity
+
 class LoginActivity : AppCompatActivity() {
 
     private val REQ_ONE_TAP = 1

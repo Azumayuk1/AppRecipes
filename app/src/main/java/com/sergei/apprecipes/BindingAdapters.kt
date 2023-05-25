@@ -15,6 +15,7 @@ import com.sergei.apprecipes.network.prepareSpoonacularInstructions
 
 
 // Adapters for local recipes
+
 @BindingAdapter("recipeImage")
 fun bindRecipeImage(imgView: ImageView, recipeLocal: RecipeLocal?) {
     if (recipeLocal?.imagePath.isNullOrBlank()) {
@@ -50,6 +51,7 @@ fun bindRecipeInstructions(textView: TextView, recipeLocal: RecipeLocal?) {
 }
 
 // Adapters for recipes loaded from Spoonacular API
+
 @BindingAdapter("recipeImageUrl")
 fun bindRecipeImageUrl(imgView: ImageView, imageUrl: String?) {
     Glide.with(imgView)
@@ -77,6 +79,7 @@ fun bindRecipeOnlineCategory(chip: Chip, recipe: SpoonacularRecipeResponse?) {
     }
 }
 
+// Prepares ingredients to be shown as a list
 fun prepareRecipeOnlineIngredients(ingredients: List<Ingredient>?): String {
     val ingredientsText = java.lang.StringBuilder("")
     if (ingredients != null) {

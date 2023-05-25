@@ -27,11 +27,8 @@ class AddNewRecipeFragment : Fragment() {
 
     private lateinit var binding: FragmentAddNewRecipeBinding
 
+    // URI for the picture that user chooses from their device
     private var chosenPictureUri: Uri? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +39,7 @@ class AddNewRecipeFragment : Fragment() {
 
         binding.toolbar.inflateMenu(R.menu.toolbar_add_new_recipe)
 
+        // Setting up toolbar
         binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24)
         binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.toolbar.setSubtitle(R.string.add_new_recipe)

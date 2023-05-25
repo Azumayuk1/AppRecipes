@@ -7,10 +7,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-
 import com.sergei.apprecipes.databinding.RecipeOnlineGridItemBinding
 import com.sergei.apprecipes.network.OnlineRecipeBasic
-import com.sergei.apprecipes.searchlocal.SearchLocalFragmentDirections
 
 class RecipesOnlineGridAdapter :
     ListAdapter<OnlineRecipeBasic, RecipesOnlineGridAdapter.RecipeViewHolder>(DiffCallback) {
@@ -37,6 +35,7 @@ class RecipesOnlineGridAdapter :
         val recipe = getItem(position)
         holder.bind(recipe)
 
+        // Navigating to recipe details
         holder.itemView.setOnClickListener {
             val action =
                 SearchOnlineFragmentDirections

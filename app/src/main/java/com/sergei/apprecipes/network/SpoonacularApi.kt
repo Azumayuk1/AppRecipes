@@ -36,6 +36,9 @@ interface SpoonacularApi {
     ) : SpoonacularRecipeResponse
 }
 
+/**
+ * Prepares instructions from API by removing HTML tags
+ */
 fun prepareSpoonacularInstructions(instructionsInput: String?): String {
     if (instructionsInput.isNullOrBlank()) {
         return ""
@@ -53,6 +56,8 @@ fun prepareSpoonacularInstructions(instructionsInput: String?): String {
         return instructions
     }
 }
+
+// Creating Spoonacular API singleton
 object SpoonacularApiService {
     val retrofitApiService : SpoonacularApi by lazy {
         retrofit.create(SpoonacularApi::class.java)

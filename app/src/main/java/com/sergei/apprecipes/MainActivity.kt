@@ -1,14 +1,11 @@
 package com.sergei.apprecipes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -21,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        // Setting up Navigation
         val navHostFragment =
             supportFragmentManager
                 .findFragmentById(R.id.fragmentContainerView)
@@ -34,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "Bottom navigation created")
 
+        // Making bottom navigation invisible on fullscreen fragments
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.searchLocalFragment, R.id.searchOnlineFragment, R.id.settingsFragment ->
@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
                 else -> bottomNavigationView.visibility = View.GONE
             }
         }
+
+        // Setting up the navigation bar
         bottomNavigationView.setupWithNavController(navController)
-
-
-
     }
 }

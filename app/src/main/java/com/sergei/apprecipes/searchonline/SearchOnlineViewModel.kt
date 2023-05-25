@@ -31,6 +31,7 @@ class SearchOnlineViewModelFactory(private val recipeLocalDao: RecipeLocalDao) :
 class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewModel() {
     private val TAG = "SearchOnline ViewModel"
 
+    // Used to notify the user if there is a connection error
     private val _apiStatus = MutableLiveData(ApiStatus.WAITING)
     val apiStatus: LiveData<ApiStatus> = _apiStatus
 
@@ -48,7 +49,7 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
                 val response = SpoonacularApiService.retrofitApiService
                     .getSearchedRecipes(searchQuery, GIFS_ON_FIRST_LOAD)
 
-//                _recipes.value?.addAll(response.results)
+                // Loading recipes
                 _recipes.postValue(response.results.toMutableList())
 
                 Log.d(TAG, "API response: loaded, size: ${_recipes.value?.size ?: 0}")
@@ -60,7 +61,7 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
         }
     }
 
-    fun clearRecipes() {
+    private fun clearRecipes() {
         _recipes.value?.clear()
     }
 
@@ -77,6 +78,9 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
         }
     }
 
+    /**
+     * Saves the recipe to user's device.
+     */
     fun downloadRecipe() {
         if (_currentRecipe.value != null) {
             viewModelScope.launch {
@@ -84,7 +88,7 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
                     RecipeLocal(
                         imagePath = _currentRecipe.value?.imageUrl,
                         name = _currentRecipe.value?.title ?: "No title",
-                        filter = _currentRecipe.value?.dishCategories?.get(0) ?: "null",
+                        filter = _currentRecipe.value?.dishCategories?.get(0) ?: "No category",
                         ingredients = prepareRecipeOnlineIngredients(_currentRecipe.value?.ingredients),
                         instructions = prepareSpoonacularInstructions(_currentRecipe.value?.summary)
                     )
@@ -95,8 +99,5 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
 
     init {
         Log.d(TAG, "ViewModel created")
-
-        // Debug
-        //searchRecipes("Oatmeal")
     }
 }

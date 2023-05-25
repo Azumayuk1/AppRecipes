@@ -9,6 +9,9 @@ import androidx.room.RoomDatabase
 abstract class AppDatabase: RoomDatabase() {
     abstract fun recipeLocalDao(): RecipeLocalDao
 
+    /*
+        Creating database singleton
+     */
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null

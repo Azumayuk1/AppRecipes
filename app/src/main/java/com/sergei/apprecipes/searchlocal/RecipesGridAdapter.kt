@@ -31,6 +31,7 @@ class RecipesGridAdapter(private val onItemClicked: (RecipeLocal) -> Unit) :
         val recipe = getItem(position)
         holder.bind(recipe)
 
+        // Navigating to recipe details
         holder.itemView.setOnClickListener {
             val action =
                 SearchLocalFragmentDirections
@@ -44,7 +45,7 @@ class RecipesGridAdapter(private val onItemClicked: (RecipeLocal) -> Unit) :
             return oldItem.id == newItem.id
         }
         override fun areContentsTheSame(oldItem: RecipeLocal, newItem: RecipeLocal): Boolean {
-            return oldItem.name == newItem.name
+            return (oldItem.name == newItem.name) && (oldItem.imagePath == newItem.imagePath)
         }
 
     }

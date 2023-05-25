@@ -22,23 +22,37 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
 
     var recipes: LiveData<List<RecipeLocal>> = getAllRecipes()
 
-
+    /**
+     * Gets list of all recipes from DAO.
+     */
     private fun getAllRecipes(): LiveData<List<RecipeLocal>> {
         return recipeLocalDao.getAll().asLiveData()
     }
 
+    /**
+     * Gets list of searched recipes from DAO.
+     */
     private fun getSearchedRecipes(query: String): LiveData<List<RecipeLocal>> {
         return recipeLocalDao.getAllByNameAndFilter(query, query).asLiveData()
     }
 
+    /**
+     * Loads all recipes from database.
+     */
     fun loadAllRecipes() {
         recipes = getAllRecipes()
     }
 
+    /**
+     * Loads searched recipes from database.
+     */
     fun loadSearchedRecipes(query: String) {
         recipes = getSearchedRecipes(query)
     }
 
+    /**
+     * Gets a single recipe by ID.
+     */
     fun retrieveRecipeById(id: Int): LiveData<RecipeLocal> {
         return recipeLocalDao.getRecipeById(id).asLiveData()
     }
@@ -76,6 +90,9 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
         }
     }
 
+    /**
+     * Adds new recipe to database.
+     */
     fun addNewRecipe(
         imagePath: String?,
         name: String,
@@ -106,6 +123,9 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
         )
     }
 
+    /**
+     * Updates recipe in a database.
+     */
     fun editRecipe(
         id: Int,
         imagePath: String?,
@@ -125,7 +145,9 @@ class SearchLocalViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMod
         }
     }
 
-    // Deleting recipe
+    /**
+     * Deletes the recipe from the database.
+     */
     fun deleteRecipe(recipe: RecipeLocal?) {
         if (recipe != null) {
             viewModelScope.launch { recipeLocalDao.deleteRecipe(recipe) }

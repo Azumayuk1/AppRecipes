@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AppRecipes</string>
+    <string name="title_search_local">Gerettet</string>
+    <string name="title_search_online">Online Suchen</string>
+    <string name="title_settings">Einstellungen</string>
+    <string name="search_your_saved_recipes">Durchsuchen Sie Ihre Rezepte</string>
+    <string name="search_recipes_online">Suchen Sie online nach Rezepten</string>
+    <string name="ingredients_label">Zutaten</string>
+    <string name="instructions_label">Wie man kocht</string>
+    <string name="recipe_image">Rezeptbild</string>
+    <string name="add_new_recipe">Neue Rezept hinzufuengen</string>
+    <string name="add_picture">Bild hinzufuengen</string>
+    <string name="recipe_name">Rezeptname</string>
+    <string name="ingredients">Zutaten</string>
+    <string name="instructions">Anweisungen</string>
+    <string name="go_back">Geh zurueck</string>
+    <string name="category_used_as_filter">Kategorie</string>
+    <string name="new_recipe_added_success">Neues Rezept erfolgreich hinzugefuegt!</string>
+    <string name="error_add_recipe">Fehler! Das Rezept muss einen Namen und Anweisungen enthalten</string>
+    <string name="no_category">Keine Kategorie</string>
+    <string name="delete_recipe">Loeschen</string>
+    <string name="recipe">Rezept</string>
+    <string name="recipe_deleted_success">Rezept geloescht!</string>
+    <string name="save_recipe_to_device">Auf Geraet speichern</string>
+    <string name="search_is_empty">Die Suche ist leer!</string>
+    <string name="picture_added_success">Bild hinzugefuegt!</string>
+    <string name="recipe_download_success">Rezept heruntergeladen!</string>
+    <string name="edit_recipe">Bearbeiten</string>
+    <string name="connection_error">Es scheint ein Verbindungsfehler vorzuliegen. Ueberpruefen Sie Ihre Internetverbindung</string>
+    <string name="no_response_from_api">Keine Antwort vom Spoonacular-Service</string>
+    <string name="add_new_picture">Neues Bild hinzufuengen</string>
+    <string name="save">Speichern</string>
+    <string name="recipe_edit_success">Rezept bearbeitet!</string>
+    <string name="user_settings">Benutzereinstellungen</string>
+    <string name="search_settings">Sucheinstellungen</string>
+    <string name="share_recipe">Rezept teilen</string>
+    <string name="sharing_my_recipe">Teile mein Rezept!</string>
+    <string name="login_with_google">Google-Login</string>
+    <string name="you_can_sign_in_with_google">Sie koennen sich mit Ihrem Google-Konto anmelden</string>
+    <string name="vegetarian">Vegetarische Rezepte</string>
+    <string name="only_vegetarian_recipes_appear">In der Suche werder nur vegetarische Rezepte angezeigt</string>
+    <string name="cheap_recipes">Guenstige Rezepte</string>
+    <string name="only_cheap_recipes">In der Suche werder nur guenstige Rezepte angezeigt</string>
+</resources>

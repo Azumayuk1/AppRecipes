@@ -22,10 +22,6 @@ class SearchOnlineFragment : Fragment() {
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +32,7 @@ class SearchOnlineFragment : Fragment() {
         val adapter = RecipesOnlineGridAdapter()
         binding.recipesRecyclerView.adapter = adapter
 
+        // Notifying user if there is a connection error
         viewModel.apiStatus.observe(viewLifecycleOwner) { apiStatus ->
             when (apiStatus) {
                 ApiStatus.CONNECTION_ERROR -> {
@@ -60,6 +57,7 @@ class SearchOnlineFragment : Fragment() {
             }
         }
 
+        // Observing received recipes
         viewModel.recipes.observe(viewLifecycleOwner) { items ->
             items.let {
                 Log.d(SearchOnlineFragment::class.simpleName, "Size: " + items.size)
@@ -74,11 +72,11 @@ class SearchOnlineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
-
         with(binding.searchBar) {
             isIconifiedByDefault = false
         }
 
+        // Setting up search
         binding.searchBar.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -101,6 +99,7 @@ class SearchOnlineFragment : Fragment() {
                     }
                 }
 
+                // Not in use
                 override fun onQueryTextChange(newText: String?): Boolean {
                     return false
                 }

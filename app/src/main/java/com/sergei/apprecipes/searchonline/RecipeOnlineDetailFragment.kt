@@ -39,6 +39,7 @@ class RecipeOnlineDetailFragment : Fragment() {
         binding.recipeId = navigationArgs.recipeId
         viewModel.retrieveRecipeById(binding.recipeId)
 
+        // Toolbar
         binding.toolbar.apply {
             inflateMenu(R.menu.toolbar_recipe_online_detail)
             setNavigationIcon(R.drawable.ic_arrow_back_24)
@@ -46,6 +47,7 @@ class RecipeOnlineDetailFragment : Fragment() {
             setSubtitle(R.string.recipe)
         }
 
+        // Observing the recipe
         viewModel.currentRecipe.observe(this.viewLifecycleOwner) { selectedItem ->
             Log.d(TAG, "Recipe retrieved, name:${selectedItem?.title ?: "Null"}")
             binding.recipe = selectedItem
@@ -59,6 +61,7 @@ class RecipeOnlineDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Downloading recipe
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.save_recipe_to_device -> {

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AppRecipes</string>
 
-    <string name="title_search_local">Search Saved</string>
+    <string name="title_search_local">Saved</string>
     <string name="title_search_online">Search Online</string>
     <string name="title_settings">Settings</string>
     <string name="search_your_saved_recipes">Search your saved recipes</string>
@@ -36,4 +36,10 @@
     <string name="search_settings">Search settings</string>
     <string name="share_recipe">Share recipe</string>
     <string name="sharing_my_recipe">Sharing my recipe!</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="you_can_sign_in_with_google">You can sign in using your Google account</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="only_vegetarian_recipes_appear">Only vegetarian recipes will appear in the search</string>
+    <string name="cheap_recipes">Cheap recipes</string>
+    <string name="only_cheap_recipes">Only inexpensive recipes will be shown</string>
 </resources>
