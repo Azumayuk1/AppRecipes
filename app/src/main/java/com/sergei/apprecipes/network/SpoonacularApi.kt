@@ -30,6 +30,12 @@ interface SpoonacularApi {
         @Query("number") numberOfRecipes: Int
     ): SpoonacularSearchResponse
 
+    @GET("recipes/complexSearch?apiKey=${API_KEY}&diet=vegan|vegetarian")
+    suspend fun getSearchedRecipesOnlyVegan(
+        @Query("query") searchQuery: String,
+        @Query("number") numberOfRecipes: Int
+    ): SpoonacularSearchResponse
+
     @GET("recipes/{id}/information?apiKey=${API_KEY}")
     suspend fun getRecipeById(
         @Path("id") recipeId: Int

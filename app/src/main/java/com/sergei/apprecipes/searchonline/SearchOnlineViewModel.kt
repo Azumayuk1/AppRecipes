@@ -4,14 +4,11 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.sergei.apprecipes.database.RecipeLocal
 import com.sergei.apprecipes.database.RecipeLocalDao
-import com.sergei.apprecipes.network.OnlineRecipeBasic
-import com.sergei.apprecipes.network.SpoonacularApiService
-import com.sergei.apprecipes.network.SpoonacularRecipeResponse
-import com.sergei.apprecipes.network.prepareSpoonacularInstructions
+import com.sergei.apprecipes.network.*
 import com.sergei.apprecipes.prepareRecipeOnlineIngredients
 import kotlinx.coroutines.launch
 
-const val GIFS_ON_FIRST_LOAD = 10
+const val GIFS_ON_FIRST_LOAD = 15
 
 enum class ApiStatus {
     WAITING, OK, NO_RESPONSE, CONNECTION_ERROR
@@ -41,13 +38,17 @@ class SearchOnlineViewModel(private val recipeLocalDao: RecipeLocalDao) : ViewMo
     private val _currentRecipe = MutableLiveData<SpoonacularRecipeResponse>()
     val currentRecipe: LiveData<SpoonacularRecipeResponse> = _currentRecipe
 
-    fun searchRecipes(searchQuery: String) {
+    fun searchRecipes(searchQuery: String, isVegan: Boolean = false) {
         clearRecipes()
 
         viewModelScope.launch {
             try {
-                val response = SpoonacularApiService.retrofitApiService
-                    .getSearchedRecipes(searchQuery, GIFS_ON_FIRST_LOAD)
+                val response = when(isVegan) {
+                    false -> SpoonacularApiService.retrofitApiService
+                        .getSearchedRecipes(searchQuery, GIFS_ON_FIRST_LOAD)
+                    true -> SpoonacularApiService.retrofitApiService
+                        .getSearchedRecipesOnlyVegan(searchQuery, GIFS_ON_FIRST_LOAD)
+                }
 
                 // Loading recipes
                 _recipes.postValue(response.results.toMutableList())

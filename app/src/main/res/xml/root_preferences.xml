@@ -14,10 +14,6 @@
             app:key="is_vegetarian"
             app:title="@string/vegetarian"
             app:summary="@string/only_vegetarian_recipes_appear"/>
-        <SwitchPreferenceCompat
-            app:key="is_cheap"
-            app:title="@string/cheap_recipes"
-            app:summary="@string/only_cheap_recipes"/>
 
     </PreferenceCategory>
 

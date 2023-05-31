@@ -1,5 +1,6 @@
 package com.sergei.apprecipes.searchonline
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.activityViewModels
+import androidx.preference.PreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import com.sergei.apprecipes.R
 import com.sergei.apprecipes.RecipesApplication
@@ -21,6 +23,9 @@ class SearchOnlineFragment : Fragment() {
             (activity?.application as RecipesApplication).database.recipeLocalDao()
         )
     }
+
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +81,8 @@ class SearchOnlineFragment : Fragment() {
             isIconifiedByDefault = false
         }
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+
         // Setting up search
         binding.searchBar.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
@@ -83,7 +90,10 @@ class SearchOnlineFragment : Fragment() {
                     binding.searchBar.clearFocus()
 
                     if (!query.isNullOrBlank()) {
-                        viewModel.searchRecipes(query)
+                        viewModel.searchRecipes(
+                            query, sharedPreferences.getBoolean("is_vegetarian", false)
+                        )
+
                         binding.recipesRecyclerView.requestFocus()
                         return false
                     } else {

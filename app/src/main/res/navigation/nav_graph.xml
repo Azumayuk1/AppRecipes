@@ -12,11 +12,14 @@
         tools:layout="@layout/fragment_search_local" >
         <action
             android:id="@+id/action_searchLocalFragment_to_addNewRecipeFragment"
-            app:destination="@id/addNewRecipeFragment" />
+            app:destination="@id/addNewRecipeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_searchLocalFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/searchOnlineFragment"
@@ -25,7 +28,9 @@
         tools:layout="@layout/fragment_search_online" >
         <action
             android:id="@+id/action_searchOnlineFragment_to_recipeOnlineDetailFragment"
-            app:destination="@id/recipeOnlineDetailFragment" />
+            app:destination="@id/recipeOnlineDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -44,7 +49,9 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_recipeDetailFragment_to_editRecipeFragment"
-            app:destination="@id/editRecipeFragment" />
+            app:destination="@id/editRecipeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/recipeOnlineDetailFragment"
